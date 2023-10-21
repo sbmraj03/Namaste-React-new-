@@ -35,6 +35,11 @@ root.render(parent);
  * no sign: no upgrade
  * t/f it is safe to use ^ because if major version is installed then alot of code will break
  * 
+ * 3. In the test of script in package.json write "test": "jest" you will know abt it later
+ *      we can also use script to ignite our app like-> "start": "parcel index.html",
+                                                        "build": "parcel build index.html"
+                                                now we just have to use npm run start or npm start
+ * 
  * 
  * a/f s2 we wil get node modules && package-lock.json (it keeps the track of the exact version of teh depedencies that is being installed)
  * node modules-> it has all the packages inside it that we will use (our proj need parcel and parcel needs its own dependies and its dependies also depended on the other dependendcies "THESE ALL ARE KNOWN AS TRANSITIVE DEPENDENCIES")
@@ -43,18 +48,18 @@ root.render(parent);
  * put node modules in gitignore as we dont want it to go into production b/c it can be automatically recreated using package.json and package-lock.json just type npm install it will reinstall the node modules if it gets deleted
  * package.json and package-lock.json have the version of the dependencies t/f these are needed in the production
  * 
- * 3. npm parcel index.html (app gets ignited)
+ * 4. npm parcel index.html (app gets ignited)
  * npx parcel package_name means to execute a package while npm is just  
  * when we do npx parcel goes to the source index.html and build a dev built for our app and host that dev built to local host 1234 if that is busy then it host the built to a new location
  *  
  * cdn link is not good to use -> it is a costly operation as we dont want to get our react from some other network call as we can already have it inside the node modules and the second thing is if some other version of react comes then we always have to change the cdn link to the new version 
  * t/f we can install react as a package inside our node modules 
  * 
- * 4. npm install react (react comes in the ndoe modules and the package.json and package-lock.json)
- * 5. npm i react-dom (i is short form of install)
+ * 5. npm install react (react comes in the ndoe modules and the package.json and package-lock.json)
+ * 6. npm i react-dom (i is short form of install)
  * everytime we want to see our development we have to ignite our app usign npx parcel index.html
  * 
- * 6. npx parcel index.html (creates .parcel-cache and dist for faster build)
+ * 7. npx parcel index.html (creates .parcel-cache and dist for faster build)
  * use import from "react"; means react is coming from the node modules earlier it was coming from the cdn link
  * parcel beautifies the uix of the error
  * 
