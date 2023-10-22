@@ -1,75 +1,180 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 
-const parent= React.createElement("div",{id: "parent"},[
-    React.createElement("div",{id:"child1"},[
-        React.createElement("h1",{},"I'm an h1 tag"),
-        React.createElement("h2",{},"I'm an h2 tag"),
-    ]),
-    React.createElement("div",{id: "child2"},[
-        React.createElement("h1",{},"I'm an h1 tag"),
-        React.createElement("h2",{},"I'm an h2 tag"),
-    ]),
-]);
+const Title= () => (
+    <h1 className="head" tabIndex="5">
+        Namaste React using jsx
+    </h1>
+);
+
+const HeadingComponent=()=> (
+    <div id="container">
+       {Title()}
+       {<Title/>}
+       {<Title></Title>}
+        <h1 className="heading"> Namaste React Functional Component</h1>
+    </div>
+);
+
+const root= ReactDOM.createRoot(document.getElementById("root"));
+root.render(<HeadingComponent/>);
 
 
-const root= ReactDOM.createRoot(document.getElementById("root")); 
-root.render(parent);
 
 
 
 /**
- * 1. npm init (test command: jest, keyword: namaste react,akshay sain,S.R)
- *    we will get package.json a/f s1 (package.json is a configuration for npm)
- *      npm needs package.json->  to help identify the project and handle dependencies.
- * Bundlres->   a development tool that combines many JavaScript code files into a single one that is production-ready loadable in the browser
- * webpack,vite,parcel these all are bundlers
+*           // creating react elem using core react
+            const heading = React.createElement(
+                "h1",
+                { id:"heading"},
+                "Namaste React"
+            );
+
+            const root= ReactDOM.createRoot(document.getElementById("root"));
+            root.render(<HeadingComponent/>);
+ */
+
+
+
+/**
+ *      // JSX -> this is not html inside js...it is html/xml like syntax
+*       // creating react element usign jsx
+        const jsxHeading= (
+                <h1 id="heading">
+                    Namaste React using JSX
+                </h1>
+        );
+
+        const root= ReactDOM.createRoot(document.getElementById("root"));
+        root.render(jsxHeading);
+ */
+
+
+/**
+ * there is no diff btw jsxheading and heading both are obj
+ * Our browser doesnt understand jsx...js engines can only read ES6 code
+ * But jsx code is working cz of parcel...jsx code is transpiled b/f it reaches to js engines and who does it? it is done by Babel
+ * Parcel already have Babel...babel is a js compiler or transpiler..it converts the jsx to react code 
+ * jsx is converted to react.createElement and then it is later on it is converted to js object and then to html element
  * 
- * 2. npm install -D parcel (-D means i want parcel as a dev dependencies)
- *  dev dependencies-> req in developmet phase that is when we are developing our app
- *  normal dep-> used in production also 
- *  
- * In package.json under devdependencies we will find ~ and ^ sign(tidle and caret) 
- * ~: it install the "MAJOR" version of parcel release
- * ^: it automatically upgrade parcel to the new "MINOR" version of parcel release
- * no sign: no upgrade
- * t/f it is safe to use ^ because if major version is installed then alot of code will break
- * 
- * 3. In the test of script in package.json write "test": "jest" you will know abt it later
- *      we can also use script to ignite our app like-> "start": "parcel index.html",
-                                                        "build": "parcel build index.html"
-                                                now we just have to use npm run start or npm start
- * 
- * 
- * a/f s2 we wil get node modules && package-lock.json (it keeps the track of the exact version of teh depedencies that is being installed)
- * node modules-> it has all the packages inside it that we will use (our proj need parcel and parcel needs its own dependies and its dependies also depended on the other dependendcies "THESE ALL ARE KNOWN AS TRANSITIVE DEPENDENCIES")
- * every dependencies have its own package.json and many other things thats why node modules is huge
- *
- * put node modules in gitignore as we dont want it to go into production b/c it can be automatically recreated using package.json and package-lock.json just type npm install it will reinstall the node modules if it gets deleted
- * package.json and package-lock.json have the version of the dependencies t/f these are needed in the production
- * 
- * 4. npm parcel index.html (app gets ignited)
- * npx parcel package_name means to execute a package while npm is just  
- * when we do npx parcel goes to the source index.html and build a dev built for our app and host that dev built to local host 1234 if that is busy then it host the built to a new location
- *  
- * cdn link is not good to use -> it is a costly operation as we dont want to get our react from some other network call as we can already have it inside the node modules and the second thing is if some other version of react comes then we always have to change the cdn link to the new version 
- * t/f we can install react as a package inside our node modules 
- * 
- * 5. npm install react (react comes in the ndoe modules and the package.json and package-lock.json)
- * 6. npm i react-dom (i is short form of install)
- * everytime we want to see our development we have to ignite our app usign npx parcel index.html
- * 
- * 7. npx parcel index.html (creates .parcel-cache and dist for faster build)
- * use import from "react"; means react is coming from the node modules earlier it was coming from the cdn link
- * parcel beautifies the uix of the error
- * 
- * import is not a normal js file t/f to use it we have to write type="module" in the script...it tells the browser tha it is of type module and not the normal js file
- * 
- * npx parcel build index.html -> this is a production build(but it will give error...remove main from package.json...main is actually entry pt. of the parcel which is conflicting with the index.html)
- * 
- * dist and parcel-cache can be regenerated t/f these have to be pushed into the .gitignore
- * 
- * BrowserList -> gives us permit to decide on which browsers version we want our code to run 
+ * Diff btw jsx and html -> jsx has className while html has class
+ *                          jsx uses camelcase while html has normal small alphabets
+ * If you want to write jsx in multiple lines then have to write inside () o/w for one liner no need to use () 
+ *      eg-> const jsxHeading= <h1 id="heading">Namaste React using JSX</h1>;
  * 
  * 
+ * 
+ * React Component -> class based component => old way => uses js classes => no one writes in this way
+ *                    functional component => uses js fxn => have to use this only
+ * functional component => fxn which returns some piece of jsx code/ returns react element
+ *      if there is only one line used then can skip return
+ *      in the below code HeadingComponent1 and HeadingComponent2 both are the same thing
+                    const Title= () => (
+                                    <h1 className="head" tabIndex="5">
+                                        Namaste React using jsx
+                                    </h1>
+                                );
+*                    // React Fxnal Component
+                    
+                    const HeadingComponent1= () => {
+                        return <h1 className="heading">Namaste React Functional Component</h1>;
+                    };
+
+                    const HeadingComponent2= () => (
+                        <h1 className="heading">Namaste React Functional Component</h1>
+)
+ */
+
+
+
+/**
+ * Component Composition-> we used functional component title inside another functional component this ika comp composition
+ * Inside JSX code if we use curly bracket {}, then we can write any js code inside this curly bracket
+ *              eg-> const number=300;
+                    const HeadingComponent=()=> (
+                        <div id="container">
+                            <Title/>
+                            <Title></Title>  //both type of Title are same
+                            {number} {2+3} {"my name is khan"} {console.log(HeadingComponent)}
+                            <h1 className="heading"> Namaste React Functional Component</h1>
+                        </div>
+                    );
+
+                    const root= ReactDOM.createRoot(document.getElementById("root"));
+                    root.render(<HeadingComponent/>);
+ * 
+ * 
+ */
+
+
+/**
+*       // Inserting js variable or react elem inside functional comp
+        const title= (
+            <h1 className="head" tabIndex="5">
+                Namaste React using jsx
+            </h1>
+        );
+
+        const HeadingComponent=()=> (
+            <div id="container">
+            {title}
+                <h1 className="heading"> Namaste React Functional Component</h1>
+            </div>
+        );
+
+        const root= ReactDOM.createRoot(document.getElementById("root"));
+        root.render(<HeadingComponent/>);
+ */
+
+
+
+/**
+*      // inserting elem inside elem
+        const elem= <span>React element</span>
+        const title= (
+            <h1 className="head" tabIndex="5">
+                {elem}
+                Namaste React using jsx
+            </h1>
+        );
+
+        const root= ReactDOM.createRoot(document.getElementById("root"));
+        root.render(title);
+        
+ */
+
+
+
+
+/**
+ *    // what if data coming from api call is some malicious data that can attack our system=> then jsx wil sanitize this data b/f running into our system...and this type of attack ika cross site scripting attack
+        const data= api.getData();
+
+        const HeadingComponent=()=> (
+            <div id="container">
+            {data}
+                <h1 className="heading"> Namaste React Functional Component</h1>
+            </div>
+        );
+ */
+
+
+
+/**
+ *      // 3 ways to use functiona component inside another functional component
+        const Title= () => (
+            <h1 className="head" tabIndex="5">
+                Namaste React using jsx
+            </h1>
+        );
+
+        const HeadingComponent=()=> (
+            <div id="container">
+            {Title()}
+            {<Title/>}
+            {<Title></Title>}
+                <h1 className="heading"> Namaste React Functional Component</h1>
+            </div>
+        );
  */
